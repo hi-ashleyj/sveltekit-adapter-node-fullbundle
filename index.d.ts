@@ -9,6 +9,8 @@ interface AdapterOptions {
 	out?: string;
 	precompress?: boolean;
 	envPrefix?: string;
+	port?: number;
+	host?: string;
 }
 
 export default function plugin(options?: AdapterOptions): Adapter;

@@ -17,3 +17,8 @@ declare module 'MANIFEST' {
 declare module 'SERVER' {
 	export { Server } from '@sveltejs/kit';
 }
+
+declare module 'CONFIGURATION' {
+	export const PORT: string;
+	export const HOST: string;
+}

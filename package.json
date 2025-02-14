@@ -38,8 +38,7 @@
 		"test": "echo \"tests temporarily disabled\" # vitest run",
 		"check": "tsc",
 		"lint": "prettier --check .",
-		"format": "pnpm lint --write",
-		"prepublishOnly": "pnpm build"
+		"format": "npm lint --write"
 	},
 	"devDependencies": {
 		"@polka/url": "^1.0.0-next.28",

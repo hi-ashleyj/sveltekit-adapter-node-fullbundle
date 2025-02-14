@@ -78,8 +78,8 @@ export default function (opts = {}) {
 			writeFileSync(
 				`${out}/configuration.js`,
 				[
-					`export const PORT = '${port};'`,
-					`export const HOST = '${host};'`,
+					`export const PORT = '${port}';`,
+					`export const HOST = '${host}';`,
 				].join('\n\n')
 			);
 

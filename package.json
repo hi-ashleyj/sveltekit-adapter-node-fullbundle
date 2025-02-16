@@ -1,6 +1,6 @@
 {
 	"name": "@hi-ashleyj/sveltekit-adapter-node-fullbundle",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Adapter for SvelteKit apps that generates a standalone Node server",
 	"keywords": [
 		"adapter",

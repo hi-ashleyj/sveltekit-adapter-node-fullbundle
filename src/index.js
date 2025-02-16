@@ -3,6 +3,9 @@ import { handler } from 'HANDLER';
 import { env } from 'ENV';
 import polka from 'polka';
 import { PORT, HOST } from "CONFIGURATION";
+import { config } from "dotenv";
+
+config();
 
 export const path = env('SOCKET_PATH', false);
 export const host = env('HOST', HOST);

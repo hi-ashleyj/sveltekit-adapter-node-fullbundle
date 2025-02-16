@@ -3,9 +3,16 @@ import { handler } from 'HANDLER';
 import { env } from 'ENV';
 import polka from 'polka';
 import { PORT, HOST } from "CONFIGURATION";
-import { config } from "dotenv";
+import { parse } from "dotenv";
+import { readFileSync } from 'node:fs';
 
-config();
+try {
+	const envFile = readFileSync("./.env");
+	const envObject = parse(envFile);
+	for (let key in envObject) {
+		process.env[key] = envObject[key];
+	}
+} catch (e) {}
 
 export const path = env('SOCKET_PATH', false);
 export const host = env('HOST', HOST);

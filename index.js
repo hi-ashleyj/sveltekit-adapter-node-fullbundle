@@ -10,7 +10,7 @@ const files = fileURLToPath(new URL('./files', import.meta.url).href);
 
 /** @type {import('./index.js').default} */
 export default function (opts = {}) {
-	const { out = 'build', precompress = true, envPrefix = '', port = 3000, host = "0.0.0.0" } = opts;
+	const { out = 'build', precompress = true, envPrefix = '', envs = {} } = opts;
 
 	return {
 		name: '@hi-ashleyj/sveltekit-adapter-node-fullbundle',
@@ -77,10 +77,7 @@ export default function (opts = {}) {
 
 			writeFileSync(
 				`${out}/configuration.js`,
-				[
-					`export const PORT = '${port}';`,
-					`export const HOST = '${host}';`,
-				].join('\n\n')
+				`export const config = ${JSON.stringify(envs, null, 4)}`
 			);
 
 			builder.copy(files, out, {

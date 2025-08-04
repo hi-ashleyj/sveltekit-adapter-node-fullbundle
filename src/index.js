@@ -2,7 +2,6 @@ import process from 'node:process';
 import { handler } from 'HANDLER';
 import { env } from 'ENV';
 import polka from 'polka';
-import { PORT, HOST } from "CONFIGURATION";
 import { parse } from "dotenv";
 import { readFileSync } from 'node:fs';
 
@@ -15,8 +14,8 @@ try {
 } catch (e) {}
 
 export const path = env('SOCKET_PATH', false);
-export const host = env('HOST', HOST);
-export const port = env('PORT', PORT);
+export const host = env('HOST', "0.0.0.0");
+export const port = env('PORT', "3000");
 
 const shutdown_timeout = parseInt(env('SHUTDOWN_TIMEOUT', '30'));
 const idle_timeout = parseInt(env('IDLE_TIMEOUT', '0'));

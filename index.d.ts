@@ -9,8 +9,7 @@ interface AdapterOptions {
 	out?: string;
 	precompress?: boolean;
 	envPrefix?: string;
-	port?: number;
-	host?: string;
+	envs?: Partial<{ [x in typeof import("./src/env.js").envs[number] ]: string }>
 }
 
 export default function plugin(options?: AdapterOptions): Adapter;

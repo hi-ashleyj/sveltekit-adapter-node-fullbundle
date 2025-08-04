@@ -19,6 +19,5 @@ declare module 'SERVER' {
 }
 
 declare module 'CONFIGURATION' {
-	export const PORT: string;
-	export const HOST: string;
+	export const config: Partial<{ [x in typeof import("./src/env.js").envs[number] ]: string }>
 }

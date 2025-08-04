@@ -1,7 +1,8 @@
 /* global ENV_PREFIX */
 import process from 'node:process';
+import { config } from "CONFIGURATION";
 
-const expected = new Set([
+export const envs = /** @type {const} */ ([
 	'SOCKET_PATH',
 	'HOST',
 	'PORT',
@@ -14,29 +15,20 @@ const expected = new Set([
 	'BODY_SIZE_LIMIT',
 	'SHUTDOWN_TIMEOUT',
 	'IDLE_TIMEOUT'
-]);
+])
+
+const expected = new Set(envs);
 
 const expected_unprefixed = new Set(['LISTEN_PID', 'LISTEN_FDS']);
 
-if (ENV_PREFIX) {
-	for (const name in process.env) {
-		if (name.startsWith(ENV_PREFIX)) {
-			const unprefixed = name.slice(ENV_PREFIX.length);
-			if (!expected.has(unprefixed)) {
-				throw new Error(
-					`You should change envPrefix (${ENV_PREFIX}) to avoid conflicts with existing environment variables — unexpectedly saw ${name}`
-				);
-			}
-		}
-	}
-}
-
 /**
- * @param {string} name
+ * @param {typeof envs[number]} name
  * @param {any} fallback
  */
 export function env(name, fallback) {
 	const prefix = expected_unprefixed.has(name) ? '' : ENV_PREFIX;
 	const prefixed = prefix + name;
-	return prefixed in process.env ? process.env[prefixed] : fallback;
+	if (prefixed in process.env) return process.env[prefixed];
+	if (name in config) return config[name];
+	return fallback;
 }
